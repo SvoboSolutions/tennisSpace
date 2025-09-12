@@ -10,7 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.tennis.space.Greeting
+import org.koin.compose.KoinApplication
+import org.tennis.space.di.appModule
 
 import tennisspace.composeapp.generated.resources.Res
 import tennisspace.composeapp.generated.resources.compose_multiplatform
@@ -18,17 +19,20 @@ import tennisspace.composeapp.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        var showContent by remember { mutableStateOf(false) }
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = { showContent = !showContent }) {
-                Text("🎾 Tennis Space")
-            }
-            AnimatedVisibility(showContent) {
-                val greeting = remember { Greeting().greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greeting")
+    KoinApplication(application = {
+        modules(appModule)
+    }) {
+        MaterialTheme {
+            var showContent by remember { mutableStateOf(false) }
+            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Button(onClick = { showContent = !showContent }) {
+                    Text("🎾 Tennis Space")
+                }
+                AnimatedVisibility(showContent) {
+                    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Image(painterResource(Res.drawable.compose_multiplatform), null)
+                        Text("Koin ist bereit! 🚀")
+                    }
                 }
             }
         }
