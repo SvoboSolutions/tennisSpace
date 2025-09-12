@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.googleServices)
 }
 
 kotlin {
@@ -29,6 +30,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.firebase.bom)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -39,8 +41,14 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            // Koin
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+
+            // Firebase
+            implementation(libs.firebase.common)
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -77,4 +85,7 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    val bom = platform(libs.firebase.bom)
+    implementation(bom)
+    androidTestImplementation(bom)
 }

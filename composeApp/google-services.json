@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970808060748",
+    "project_id": "tennisspace-8e4b0",
+    "storage_bucket": "tennisspace-8e4b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970808060748:android:ddd2857dffd8ff3e863de9",
+        "android_client_info": {
+          "package_name": "org.tennis.space"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9R3g_EllenDX-r9DqaV1WVZQjfuOiK9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
