@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
-import org.tennis.space.data.repository.AuthRepository
+import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.RegisterRequest
 import org.tennis.space.domain.model.User
 

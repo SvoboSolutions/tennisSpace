@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.koin.compose.koinInject
-import org.tennis.space.data.repository.AuthRepository
+import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.User
 import org.tennis.space.presentation.auth.LoginScreen
 import org.tennis.space.presentation.auth.RegisterScreen

@@ -6,12 +6,12 @@ import androidx.compose.ui.graphics.Color
 
 object TennisColors {
     // Moderne Tennis Palette - Hauptfarben
-    val TennisGreen = Color(0xFF2E7D32)           // Tennis Court Grün
-    val TennisGreenLight = Color(0xFF4CAF50)      // Helleres Grün
-    val LimeAccent = Color(0xFF8BC34A)            // Tennis Ball Grün
-    val CourtRed = Color(0xFFD32F2F)              // Clay Court Rot
-    val NetWhite = Color(0xFFF8F9FA)              // Netz Weiß
-    val CourtBlue = Color(0xFF1976D2)             // Hard Court Blau
+    val TennisGreen = Color(0xFF2E7D32)           // (Sekundär, dezenter Akzent)
+    val TennisGreenLight = Color(0xFF66BB6A)      // Heller Grün-Akzent
+    val LimeAccent = Color(0xFFFFF176)            // Ball-Gelb bleibt als Akzent
+    val CourtRed = Color(0xFFF4511E)              // Orange (Clay Court)
+    val NetWhite = Color(0xFFFFFFFF)              // Rein Weiß (Netz)
+    val CourtBlue = Color(0xFF1565C0)             // Hard Court Blau
 
     // Neutrale Farben
     val ShadowGray = Color(0xFF424242)            // Schatten
@@ -21,39 +21,40 @@ object TennisColors {
 
     // Light Mode Text
     val TextPrimary = Color(0xFF1B1B1B)           // Fast Schwarz
-    val TextSecondary = Color(0xFF666666)         // Mittelgrau
-    val TextTertiary = Color(0xFF9E9E9E)          // Hellgrau
+    val TextSecondary = Color(0xFF444444)         // Abdunkeln für besseren Kontrast
+    val TextTertiary = Color(0xFF777777)
     val TextOnColor = Color.White                 // Weiß auf Farbe
 
     // Dark Mode Text
-    val TextPrimaryDark = Color(0xFFE0E0E0)       // Helles Grau
-    val TextSecondaryDark = Color(0xFFB0B0B0)     // Mittleres Grau
-    val TextTertiaryDark = Color(0xFF757575)      // Dunkles Grau
-    val TextOnColorDark = Color(0xFF1B1B1B)       // Dunkel auf Farbe
+    val TextPrimaryDark = Color(0xFFE0E0E0)
+    val TextSecondaryDark = Color(0xFFB0B0B0)
+    val TextTertiaryDark = Color(0xFF888888)
+    val TextOnColorDark = Color(0xFF121212)
 
     // Surface Colors Light
-    val SurfaceLight = Color(0xFFFFFFFF)          // Reines Weiß
-    val SurfaceVariantLight = Color(0xFFF5F5F5)   // Sehr helles Grau
-    val BackgroundLight = Color(0xFFFAFAFA)       // Warmes Weiß
+    val SurfaceLight = Color(0xFFFFFFFF)          // Weiß
+    val SurfaceVariantLight = Color(0xFFFAFAFA)   // Sehr hell
+    val BackgroundLight = Color(0xFFFFFBF8)       // Warmes Weiß mit leichter Clay-Note
 
     // Surface Colors Dark
-    val SurfaceDark = Color(0xFF1E1E1E)           // Sehr dunkles Grau
-    val SurfaceVariantDark = Color(0xFF2D2D2D)    // Mittleres Dunkelgrau
-    val BackgroundDark = Color(0xFF121212)        // Fast Schwarz
+    val SurfaceDark = Color(0xFF121212)
+    val SurfaceVariantDark = Color(0xFF1E1E1E)
+    val BackgroundDark = Color(0xFF0D0D0D)
 
     // Status Colors
-    val Success = Color(0xFF4CAF50)               // Grün
-    val SuccessDark = Color(0xFF81C784)           // Heller für Dark Mode
-    val Error = Color(0xFFE53935)                 // Rot
-    val ErrorDark = Color(0xFFEF5350)             // Heller für Dark Mode
+    val Success = Color(0xFF42A5F5)               // Blau = Positiv
+    val SuccessDark = Color(0xFF64B5F6)           // Hellblau für Dark Mode
+    val Error = Color(0xFFE53935)                 // Rot (Fehler bleibt rot)
+    val ErrorDark = Color(0xFFEF5350)
     val Warning = Color(0xFFFF9800)               // Orange
-    val WarningDark = Color(0xFFFFB74D)           // Heller für Dark Mode
+    val WarningDark = Color(0xFFFFB74D)
 
-    // Court Status (für später)
-    val Available = Color(0xFF4CAF50)
-    val Booked = Color(0xFFFF9800)
-    val Blocked = Color(0xFFE53935)
+    // Court Status
+    val Available = Color(0xFF42A5F5)             // Blau = frei
+    val Booked = Color(0xFFFF9800)                // Orange = reserviert
+    val Blocked = Color(0xFF757575)               // Grau = blockiert
 }
+
 
 // Light Theme
 val LightColorScheme = lightColorScheme(

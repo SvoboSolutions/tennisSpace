@@ -3,6 +3,9 @@ package org.tennis.space.presentation.main
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -10,7 +13,10 @@ import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import org.tennis.space.domain.model.User
 import androidx.compose.runtime.rememberCoroutineScope
-import org.tennis.space.data.repository.AuthRepository
+import androidx.compose.runtime.setValue
+import org.tennis.space.domain.repository.AuthRepository
+import org.tennis.space.domain.repository.ClubRepository
+import org.tennis.space.domain.usecases.SeedDataUseCase
 
 @Composable
 fun MainScreen(
@@ -36,6 +42,11 @@ private fun UserCard(
     user: User,
     onLogout: () -> Unit
 ) {
+
+    val clubRepository: ClubRepository = koinInject()
+    val scope = rememberCoroutineScope()
+    var isSeeding by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,6 +91,25 @@ private fun UserCard(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Abmelden")
+            }
+
+            Button(
+                onClick = {
+                    scope.launch {
+                        isSeeding = true
+                        val seedUseCase = SeedDataUseCase(clubRepository)
+                        seedUseCase.seedClubs()
+                        isSeeding = false
+                    }
+                },
+                enabled = !isSeeding,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                if (isSeeding) {
+                    Text("Creating test clubs...")
+                } else {
+                    Text("🌱 Create Test Clubs")
+                }
             }
         }
     }
