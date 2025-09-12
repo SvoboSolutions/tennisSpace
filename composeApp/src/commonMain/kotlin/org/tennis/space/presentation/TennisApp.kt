@@ -11,6 +11,7 @@ import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.User
 import org.tennis.space.presentation.auth.LoginScreen
 import org.tennis.space.presentation.auth.RegisterScreen
+import org.tennis.space.presentation.club.ClubSearchScreen
 import org.tennis.space.presentation.main.MainScreen
 import org.tennis.space.presentation.theme.TennisSpaceTheme
 
@@ -19,46 +20,69 @@ fun TennisApp() {
     val authRepository: AuthRepository = koinInject()
     var user by remember { mutableStateOf<User?>(null) }
     var showRegister by remember { mutableStateOf(false) }
+    var showClubSearch by remember { mutableStateOf(false) }
 
     // Check current user on startup
     LaunchedEffect(Unit) {
         user = authRepository.getCurrentUser()
+        if (user != null) {
+
+        }
     }
 
-    TennisSpaceTheme {
+    TennisSpaceTheme{
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                AppHeader()
-                Spacer(modifier = Modifier.height(32.dp))
-
                 when {
-                    user != null -> {
+                    user == null -> {
+                        AppHeader()
+                        Spacer(modifier = Modifier.height(32.dp))
+
+                        if (showRegister) {
+                            RegisterScreen(
+                                onRegisterSuccess = { registeredUser ->
+                                    user = registeredUser
+                                    showRegister = false
+
+                                },
+                                onBackToLogin = { showRegister = false }
+                            )
+                        } else {
+                            LoginScreen(
+                                onLoginSuccess = { loggedInUser ->
+                                    user = loggedInUser
+
+                                },
+                                onNavigateToRegister = { showRegister = true }
+                            )
+                        }
+                    }
+
+                    showClubSearch -> {
+                        ClubSearchScreen(
+                            onClubSelected = { clubId ->
+                                // Navigation zu Club Details später
+                                println("Selected club: $clubId")
+                            }
+                        )
+                    }
+
+                    else -> {
+
                         MainScreen(
                             user = user!!,
-                            onLogout = { user = null }
-                        )
-                    }
-                    showRegister -> {
-                        RegisterScreen(
-                            onRegisterSuccess = { registeredUser ->
-                                user = registeredUser
-                                showRegister = false
+                            onLogout = {
+                                user = null
+                                showClubSearch = false
                             },
-                            onBackToLogin = { showRegister = false }
-                        )
-                    }
-                    else -> {
-                        LoginScreen(
-                            onLoginSuccess = { loggedInUser ->
-                                user = loggedInUser
-                            },
-                            onNavigateToRegister = { showRegister = true }
+                            onSearchClubs = { showClubSearch = true }
                         )
                     }
                 }

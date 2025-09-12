@@ -16,31 +16,34 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.repository.ClubRepository
-import org.tennis.space.domain.usecases.SeedDataUseCase
 
 @Composable
 fun MainScreen(
     user: User,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onSearchClubs: () -> Unit
 ) {
     val authRepository: AuthRepository = koinInject()
     val scope = rememberCoroutineScope()
-
-    UserCard(
-        user = user,
-        onLogout = {
-            scope.launch {
-                authRepository.logout()
-                onLogout()
-            }
-        }
-    )
+    Column (horizontalAlignment = Alignment.CenterHorizontally){
+        UserCard(
+            user = user,
+            onLogout = {
+                scope.launch {
+                    authRepository.logout()
+                    onLogout()
+                }
+            },
+            onSearchClubs = onSearchClubs
+        )
+    }
 }
 
 @Composable
 private fun UserCard(
     user: User,
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onSearchClubs: () -> Unit
 ) {
 
     val clubRepository: ClubRepository = koinInject()
@@ -78,7 +81,7 @@ private fun UserCard(
             Spacer(modifier = Modifier.height(24.dp))
 
             Button(
-                onClick = { /* TODO: Navigate to club search */ },
+                onClick = { onSearchClubs() },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("🎾 Tennisvereine suchen")
@@ -92,25 +95,25 @@ private fun UserCard(
             ) {
                 Text("Abmelden")
             }
-
-            Button(
-                onClick = {
-                    scope.launch {
-                        isSeeding = true
-                        val seedUseCase = SeedDataUseCase(clubRepository)
-                        seedUseCase.seedClubs()
-                        isSeeding = false
-                    }
-                },
-                enabled = !isSeeding,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                if (isSeeding) {
-                    Text("Creating test clubs...")
-                } else {
-                    Text("🌱 Create Test Clubs")
-                }
-            }
+//
+//            Button(
+//                onClick = {
+//                    scope.launch {
+//                        isSeeding = true
+//                        val seedUseCase = SeedDataUseCase(clubRepository)
+//                        seedUseCase.seedClubs()
+//                        isSeeding = false
+//                    }
+//                },
+//                enabled = !isSeeding,
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                if (isSeeding) {
+//                    Text("Creating test clubs...")
+//                } else {
+//                    Text("🌱 Create Test Clubs")
+//                }
+//            }
         }
     }
 }
