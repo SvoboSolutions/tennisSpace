@@ -1,0 +1,65 @@
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+local.properties
+.gradle/
+/build/
+/captures/
+.externalNativeBuild
+.cxx
+
+# iOS
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+*.xcworkspace/*
+!*.xcworkspace/contents.xcworkspacedata
+UserInterfaceState.xcuserstate
+.DS_Store
+
+# Kotlin Multiplatform
+/.kotlin/
+/local.properties
+*.iml
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs
+hs_err_pid*
+
+# Compose Resources
+**/generated/
+
+# KMP
+/shared/build/
+/androidApp/build/
+/iosApp/build/
+/composeApp/build/
