@@ -55,21 +55,6 @@ class FirebaseClubRepository(
         }
     }
 
-    override suspend fun searchClubs(query: String): Result<List<TennisClub>> {
-        return try {
-            val snapshot = firestore.collection(CLUBS_COLLECTION)
-                .where("name", ">=", query)
-                .where("name", "<=", query + "\uf8ff")
-                .get()
-
-            val clubs = snapshot.documents.map { doc ->
-                doc.data<TennisClub>().copy(id = doc.id)
-            }
-            Result.success(clubs)
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
 
     @OptIn(ExperimentalTime::class)
     override suspend fun requestMembership(clubId: String, userId: String): Result<ClubMembership> {

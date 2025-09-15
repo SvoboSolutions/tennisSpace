@@ -8,7 +8,6 @@ interface ClubRepository {
     suspend fun getAllClubs(): Result<List<TennisClub>>
     suspend fun createClub(club: TennisClub): Result<TennisClub>
     suspend fun getClubById(clubId: String): Result<TennisClub>
-    suspend fun searchClubs(query: String): Result<List<TennisClub>>
 
     // Membership Management
     suspend fun requestMembership(clubId: String, userId: String): Result<ClubMembership>

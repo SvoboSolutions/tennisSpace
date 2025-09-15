@@ -98,7 +98,7 @@ private fun AppHeader() {
         modifier = Modifier.padding(top = 32.dp)
     ) {
         Text(
-            text = "🎾 Tennis Space",
+            text = "Tennis Space",
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.primary
         )

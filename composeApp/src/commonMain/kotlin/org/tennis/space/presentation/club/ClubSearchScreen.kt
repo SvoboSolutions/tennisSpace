@@ -22,6 +22,7 @@ fun ClubSearchScreen(
 ) {
     val clubRepository: ClubRepository = koinInject()
     var clubs by remember { mutableStateOf<List<TennisClub>>(emptyList()) }
+    var filteredClub by remember { mutableStateOf<List<TennisClub>>(emptyList()) }
     var searchQuery by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -33,6 +34,7 @@ fun ClubSearchScreen(
         val result = clubRepository.getAllClubs()
         result.onSuccess { loadedClubs ->
             clubs = loadedClubs
+            filteredClub = clubs
         }.onFailure { error ->
             errorMessage = error.message
         }
@@ -56,20 +58,18 @@ fun ClubSearchScreen(
             query = searchQuery,
             onQueryChange = { query ->
                 searchQuery = query
-                // Search on text change
-                scope.launch {
-                    if (query.isNotEmpty()) {
-                        val result = clubRepository.searchClubs(query)
-                        result.onSuccess { searchResults ->
-                            clubs = searchResults
+                if (query.isNotEmpty())
+                    scope.launch {
+                        val result = clubs.filter {
+                            it.address.contains(
+                                query,
+                                ignoreCase = true
+                            ) || it.name.contains(query, ignoreCase = true)
                         }
-                    } else {
-                        // Reload all clubs if search is empty
-                        val result = clubRepository.getAllClubs()
-                        result.onSuccess { allClubs ->
-                            clubs = allClubs
-                        }
+                        filteredClub = result
                     }
+                else {
+                    filteredClub = clubs
                 }
             },
             modifier = Modifier
@@ -102,7 +102,7 @@ fun ClubSearchScreen(
                 }
             }
 
-            clubs.isEmpty() -> {
+            filteredClub.isEmpty() -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -119,7 +119,7 @@ fun ClubSearchScreen(
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(clubs) { club ->
+                    items(filteredClub) { club ->
                         ClubCard(
                             club = club,
                             onClick = { onClubSelected(club.id) }
