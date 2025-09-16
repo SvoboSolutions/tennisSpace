@@ -13,7 +13,6 @@ import org.koin.compose.koinInject
 import org.tennis.space.domain.model.TennisClub
 import org.tennis.space.domain.repository.ClubRepository
 import org.tennis.space.presentation.theme.TennisColors
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 
 @Composable

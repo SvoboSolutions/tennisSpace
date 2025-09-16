@@ -22,12 +22,8 @@ fun TennisApp() {
     var showRegister by remember { mutableStateOf(false) }
     var showClubSearch by remember { mutableStateOf(false) }
 
-    // Check current user on startup
     LaunchedEffect(Unit) {
         user = authRepository.getCurrentUser()
-        if (user != null) {
-
-        }
     }
 
     TennisSpaceTheme{

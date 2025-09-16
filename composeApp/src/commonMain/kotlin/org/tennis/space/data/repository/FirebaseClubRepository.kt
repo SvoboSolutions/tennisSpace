@@ -106,7 +106,7 @@ class FirebaseClubRepository(
     override suspend fun getClubBookings(clubId: String): Result<List<CourtBooking>> {
         return try {
             val snapshot = firestore.collection(BOOKINGS_COLLECTION)
-                .where("clubId", "==", clubId)
+                .where { "clubId" equalTo clubId }
                 .get()
 
             val bookings = snapshot.documents.map { doc ->
@@ -121,7 +121,7 @@ class FirebaseClubRepository(
     override suspend fun getUserBookings(userId: String): Result<List<CourtBooking>> {
         return try {
             val snapshot = firestore.collection(BOOKINGS_COLLECTION)
-                .where("bookedBy", "==", userId)
+                .where { "bookedBy" equalTo userId }
                 .get()
 
             val bookings = snapshot.documents.map { doc ->
