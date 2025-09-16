@@ -16,6 +16,7 @@ koin = "3.5.3"
 firebase-bom = "33.7.0"
 firebase-gitlive = "1.13.0"
 google-services = "4.4.2"
+material-icons = "1.8.2"  # Gleiche Version wie composeMultiplatform
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -38,6 +39,9 @@ firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.r
 firebase-auth = { group = "dev.gitlive", name = "firebase-auth", version.ref = "firebase-gitlive" }
 firebase-firestore = { group = "dev.gitlive", name = "firebase-firestore", version.ref = "firebase-gitlive" }
 firebase-common = { group = "dev.gitlive", name = "firebase-common", version.ref = "firebase-gitlive" }
+
+# Icons
+compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "material-icons" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

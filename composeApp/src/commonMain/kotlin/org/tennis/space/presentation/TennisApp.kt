@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.dp
 import org.koin.compose.koinInject
 import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.User
-import org.tennis.space.presentation.auth.LoginScreen
-import org.tennis.space.presentation.auth.RegisterScreen
-import org.tennis.space.presentation.club.ClubSearchScreen
+import org.tennis.space.presentation.auth.login.LoginScreen
+import org.tennis.space.presentation.auth.register.RegisterScreen
+import org.tennis.space.presentation.club.search.ClubSearchScreen
 import org.tennis.space.presentation.main.MainScreen
 import org.tennis.space.presentation.theme.TennisSpaceTheme
 
