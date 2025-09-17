@@ -1,4 +1,4 @@
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.KoinApplication
 import org.tennis.space.di.appModule

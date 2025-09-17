@@ -5,7 +5,7 @@ import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 
 @Serializable
-data class ClubMembership  @OptIn(ExperimentalTime::class) constructor(
+data class ClubMembership @OptIn(ExperimentalTime::class) constructor(
     val id: String = "",
     val userId: String,
     val clubId: String,

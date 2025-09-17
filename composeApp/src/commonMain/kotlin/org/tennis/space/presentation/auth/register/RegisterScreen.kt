@@ -1,14 +1,22 @@
 package org.tennis.space.presentation.auth.register
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
-import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.RegisterRequest
 import org.tennis.space.domain.model.User
+import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.presentation.theme.TennisDimensions
 
 @Composable

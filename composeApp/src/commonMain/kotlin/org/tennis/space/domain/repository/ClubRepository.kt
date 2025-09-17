@@ -1,8 +1,8 @@
 package org.tennis.space.domain.repository
 
-import org.tennis.space.domain.model.TennisClub
 import org.tennis.space.domain.model.ClubMembership
 import org.tennis.space.domain.model.CourtBooking
+import org.tennis.space.domain.model.TennisClub
 
 interface ClubRepository {
     suspend fun getAllClubs(): Result<List<TennisClub>>

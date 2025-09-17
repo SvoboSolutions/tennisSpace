@@ -2,9 +2,9 @@ package org.tennis.space.data.repository
 
 import dev.gitlive.firebase.auth.FirebaseAuth
 import dev.gitlive.firebase.auth.FirebaseUser
-import org.tennis.space.domain.model.User
 import org.tennis.space.domain.model.LoginRequest
 import org.tennis.space.domain.model.RegisterRequest
+import org.tennis.space.domain.model.User
 import org.tennis.space.domain.repository.AuthRepository
 
 class FirebaseAuthRepository(

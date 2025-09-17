@@ -2,9 +2,9 @@ package org.tennis.space.data.repository
 
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import dev.gitlive.firebase.firestore.where
-import org.tennis.space.domain.model.TennisClub
 import org.tennis.space.domain.model.ClubMembership
 import org.tennis.space.domain.model.CourtBooking
+import org.tennis.space.domain.model.TennisClub
 import org.tennis.space.domain.repository.ClubRepository
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime

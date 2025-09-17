@@ -1,7 +1,11 @@
 package org.tennis.space.presentation.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class NavigationItem(
@@ -14,7 +18,9 @@ sealed class NavigationItem(
     object Profile : NavigationItem("profile", "Profil", Icons.Default.Person)
 
     // No Club Navigation
-    object SearchTraining : NavigationItem("search_training", "Training suchen", Icons.Default.Search)
+    object SearchTraining :
+        NavigationItem("search_training", "Training suchen", Icons.Default.Search)
+
     object SearchClub : NavigationItem("search_club", "Verein suchen", Icons.Default.LocationOn)
 
     // Has Club Navigation

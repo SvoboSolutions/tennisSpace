@@ -13,6 +13,7 @@ data class User(
     val profileImageUrl: String? = null,
     val ownClubs: List<String> = emptyList()
 )
+
 fun getNavigationState(user: User): NavigationState {
     return if (user.ownClubs.isEmpty()) {
         NavigationState.NO_CLUB

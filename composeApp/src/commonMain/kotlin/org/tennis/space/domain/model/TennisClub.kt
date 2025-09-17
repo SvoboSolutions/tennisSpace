@@ -30,7 +30,7 @@ data class BookingSettings(
 data class OperatingHours(
     val openTime: String = "08:00",           // "HH:mm" Format
     val closeTime: String = "22:00",
-    val daysOfWeek: List<Int> = listOf(1,2,3,4,5,6,7) // 1=Monday, 7=Sunday
+    val daysOfWeek: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7) // 1=Monday, 7=Sunday
 )
 
 @Serializable

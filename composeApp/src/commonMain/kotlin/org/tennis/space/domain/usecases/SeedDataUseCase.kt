@@ -1,6 +1,10 @@
 package org.tennis.space.domain.usecases
 
-import org.tennis.space.domain.model.*
+import org.tennis.space.domain.model.BookingSettings
+import org.tennis.space.domain.model.CourtSurface
+import org.tennis.space.domain.model.OperatingHours
+import org.tennis.space.domain.model.TennisClub
+import org.tennis.space.domain.model.TennisCourt
 import org.tennis.space.domain.repository.ClubRepository
 
 class SeedDataUseCase(
@@ -81,7 +85,7 @@ class SeedDataUseCase(
                 operatingHours = OperatingHours(
                     openTime = "08:00",
                     closeTime = "22:00",
-                    daysOfWeek = listOf(1,2,3,4,5,6,7)
+                    daysOfWeek = listOf(1, 2, 3, 4, 5, 6, 7)
                 )
             ),
 
