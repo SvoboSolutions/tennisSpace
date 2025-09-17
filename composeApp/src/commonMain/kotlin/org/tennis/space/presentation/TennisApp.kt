@@ -24,6 +24,7 @@ import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.presentation.auth.login.LoginScreen
 import org.tennis.space.presentation.auth.register.RegisterScreen
 import org.tennis.space.presentation.main.MainScreen
+import org.tennis.space.presentation.theme.TennisDimensions
 import org.tennis.space.presentation.theme.TennisSpaceTheme
 
 @Composable
@@ -73,12 +74,12 @@ private fun AuthFlow(
     onUserAuthenticated: (User) -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize()
+            .padding(TennisDimensions.SpaceMedium),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         AppHeader()
-        Spacer(modifier = Modifier.height(32.dp))
 
         if (showRegister) {
             RegisterScreen(

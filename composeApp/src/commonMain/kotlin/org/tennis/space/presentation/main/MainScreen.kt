@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.outlined.DoorFront
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -54,7 +54,7 @@ fun MainScreen(
                 actions = {
                     IconButton(onClick = onLogout) {
                         Icon(
-                            imageVector = Icons.Default.ExitToApp,
+                            imageVector = Icons.Outlined.DoorFront,
                             contentDescription = "Abmelden",
                             tint = MaterialTheme.colorScheme.error
                         )
@@ -78,8 +78,8 @@ fun MainScreen(
         when (currentRoute) {
             "dashboard" -> DashboardContent(
                 user = user,
-                onLogout = onLogout,
-                modifier = Modifier.padding(paddingValues)
+                modifier = Modifier.padding(paddingValues),
+                onSearchClubs = { currentRoute = "search_club" }
             )
 
             "profile" -> ProfileContent(
@@ -106,10 +106,9 @@ fun MainScreen(
 @Composable
 private fun DashboardContent(
     user: User,
-    onLogout: () -> Unit,
+    onSearchClubs: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    koinInject()
     rememberCoroutineScope()
 
     Box(
@@ -127,7 +126,7 @@ private fun DashboardContent(
 
             if (user.ownClubs.isEmpty()) {
                 ClubSearchButton(
-                    onSearchClubs = { /* Navigate to club search */ }
+                    onSearchClubs = { onSearchClubs() }
                 )
             } else {
                 DashboardActions(user = user)

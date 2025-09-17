@@ -31,7 +31,8 @@ object NavigationItems {
     val noClubItems = listOf(
         NavigationItem.Dashboard,
         NavigationItem.SearchClub,
-        NavigationItem.Profile
+        NavigationItem.Profile,
+        NavigationItem.SearchTraining
     )
 
     val hasClubItems = listOf(
