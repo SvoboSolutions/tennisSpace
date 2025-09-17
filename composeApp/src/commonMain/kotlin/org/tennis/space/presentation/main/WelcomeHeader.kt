@@ -24,7 +24,7 @@ fun WelcomeHeader(user: User) {
         shape = RoundedCornerShape(TennisDimensions.CardCornerRadius)
     ) {
         Column(
-            modifier = Modifier.padding(TennisDimensions.SpaceMedium),
+            modifier = Modifier.fillMaxWidth().padding(TennisDimensions.SpaceMedium),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(TennisDimensions.SpaceMedium)
         ) {
@@ -52,7 +52,7 @@ private fun UserInfoSection(user: User) {
             style = MaterialTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.SemiBold
             ),
-            color = TennisColors.ForestGreen
+            color = MaterialTheme.colorScheme.primary
         )
 
         Text(

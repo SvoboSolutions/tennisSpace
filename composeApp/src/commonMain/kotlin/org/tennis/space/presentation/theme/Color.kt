@@ -5,83 +5,84 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
 object TennisColors {
-    // Hauptfarbpalette - Inspiriert von Tennis Elementen
-    val ForestGreen = Color(0xFF2E5233)           // Primär: Rasenplatz Grün
-    val ForestGreenLight = Color(0xFF4A7C59)      // Heller Rasenplatz
-    val ClayOrange = Color(0xFFE07B39)            // Sekundär: Sandplatz Orange
-    val ClayOrangeLight = Color(0xFFEE9B5B)       // Heller Sandplatz
+    // Clay Court Hauptpalette - Orange-basierte Ascheplatz-Farben
+    val ClayOrange = Color(0xFFD2691E)            // Primär: Warmes Ascheplatz-Orange
+    val ClayOrangeLight = Color(0xFFE8A971)       // Heller Aschenton
+    val ClayBrown = Color(0xFFB8860B)             // Sekundär: Goldbraun
+    val ClayBrownLight = Color(0xFFD4A843)        // Helles Goldbraun
 
-    val TennisYellow = Color(0xFFE6D35C)          // Tennisball Gelb (gedämpft)
-    val CourtBlue = Color(0xFF4A90A4)             // Hartplatz Blau (gedämpft)
-    val NetWhite = Color(0xFFFAFAFA)              // Netz Weiß
+    val CourtWhite = Color(0xFFFFFFF8)            // Weiß der Linien
+    val TennisGreen = Color(0xFF228B22)           // Saftiges Grün für Akzente
+    val CourtBlue = Color(0xFF4682B4)             // Harmonisches Stahlblau
+    val TennisYellow = Color(0xFFFFD700)          // Leuchtend gelb für Bälle
 
-    // Natürliche Akzentfarben
-    val WarmBeige = Color(0xFFF5F1E8)             // Warmer Hintergrund
-    val SoftMint = Color(0xFFB8E6B8)              // Sanftes Mint
-    val DeepTeal = Color(0xFF2B6777)              // Tiefes Petrol
+    // Natürliche harmonische Töne
+    val WarmCream = Color(0xFFFAF0E6)             // Warme cremige Basis
+    val SoftPeach = Color(0xFFFFE4B5)             // Sanftes Pfirsich
+    val EarthGreen = Color(0xFF556B2F)            // Gedämpftes Erdgrün
 
     // Neutrale Palette
-    val CharcoalGray = Color(0xFF2C2C2C)          // Dunkles Grau
-    val SlateGray = Color(0xFF64748B)             // Mittleres Grau
-    val MistGray = Color(0xFFCBD5E0)              // Helles Grau
+    val CharcoalGray = Color(0xFF36454F)          // Dunkles Grau
+    val WarmGray = Color(0xFF8B8680)              // Warmes Grau
+    val LightGray = Color(0xFFE5E5DC)             // Helles Grau (Beige-Ton)
     val SoftWhite = Color(0xFFFFFEFC)             // Warmes Weiß
 
     // Text Colors Light
-    val TextPrimary = Color(0xFF1A202C)           // Sehr dunkles Blau-Grau
-    val TextSecondary = Color(0xFF4A5568)         // Mittleres Grau
-    val TextTertiary = Color(0xFF718096)          // Helleres Grau
-    val TextAccent = ForestGreen                  // Grün für Akzente
-    val TextOnColor = SoftWhite                   // Weiß auf dunklen Farben
+    val TextPrimary = Color(0xFF2F1B14)           // Sehr dunkles Braun
+    val TextSecondary = Color(0xFF5D4037)         // Mittleres Braun
+    val TextTertiary = Color(0xFF8D6E63)          // Helleres Braun
+    val TextAccent = ClayOrange                   // Orange für Akzente
+    val TextOnColor = CourtWhite                  // Weiß auf dunklen Farben
 
     // Text Colors Dark
-    val TextPrimaryDark = Color(0xFFF7FAFC)       // Sehr helles Grau
-    val TextSecondaryDark = Color(0xFFE2E8F0)     // Helles Grau
-    val TextTertiaryDark = Color(0xFFA0AEC0)      // Mittleres Grau
-    val TextAccentDark = SoftMint                 // Mint für Dark Mode
+    val TextPrimaryDark = Color(0xFFFAF0E6)       // Sehr helles Creme
+    val TextSecondaryDark = Color(0xFFE8A971)     // Helles Orange
+    val TextTertiaryDark = Color(0xFFBFA48E)      // Mittleres Beige
+    val TextAccentDark = ClayOrangeLight          // Helles Orange für Dark Mode
     val TextOnColorDark = CharcoalGray            // Dunkel auf hellen Farben
 
     // Surface Colors Light
-    val SurfaceLight = SoftWhite
-    val SurfaceVariantLight = WarmBeige
-    val BackgroundLight = Color(0xFFFCFBF9)       // Noch wärmerer Hintergrund
+    val SurfaceLight = CourtWhite
+    val SurfaceVariantLight = WarmCream
+    val BackgroundLight = Color(0xFFFFFBF0)       // Sehr warmer cremiger Hintergrund
 
     // Surface Colors Dark
-    val SurfaceDark = Color(0xFF1A1D23)           // Warmes Dunkelgrau
-    val SurfaceVariantDark = Color(0xFF232830)    // Warmes mittleres Grau
-    val BackgroundDark = Color(0xFF0F1114)        // Warmes Tiefschwarz
+    val SurfaceDark = Color(0xFF1C1611)           // Warmes dunkles Braun
+    val SurfaceVariantDark = Color(0xFF2A241E)    // Warmes mittleres Braun
+    val BackgroundDark = Color(0xFF12100C)        // Warmes Tiefbraun
 
-    // Status Colors - Harmonisch mit der Hauptpalette
-    val Success = Color(0xFF38A169)               // Grün (harmoniert mit Forest)
-    val SuccessDark = Color(0xFF68D391)
-    val Error = Color(0xFFE53E3E)                 // Rot (gedämpft)
-    val ErrorDark = Color(0xFFFC8181)
-    val Warning = ClayOrange                      // Orange aus Hauptpalette
-    val WarningDark = ClayOrangeLight
-    val Info = CourtBlue                          // Blau aus Hauptpalette
-    val InfoDark = Color(0xFF63B3ED)
+    // Status Colors - Harmonische Palette
+    val Success = TennisGreen                     // Grün für Erfolg
+    val SuccessDark = Color(0xFF32CD32)
+    val Error = Color(0xFFDC143C)                 // Kräftiges Rot für Fehler
+    val ErrorDark = Color(0xFFFF6B6B)
+    val Warning = TennisYellow                    // Gelb für Warnungen
+    val WarningDark = Color(0xFFFFE135)
+    val Info = CourtBlue                          // Blau für Info
+    val InfoDark = Color(0xFF87CEEB)
 
-    // Court Status - Natürliche Farben
-    val Available = Color(0xFF38A169)             // Grün = verfügbar
+    // Court Status - Clay Court Farben
+    val Available = TennisGreen                   // Grün = verfügbar
     val Booked = ClayOrange                       // Orange = gebucht
-    val Maintenance = SlateGray                   // Grau = Wartung
+    val Maintenance = WarmGray                    // Grau = Wartung
 }
 
-// Light Theme - Harmonische Tennis Farben
+// Light Theme - Clay Court Orange-Palette
 val LightColorScheme = lightColorScheme(
-    primary = TennisColors.ForestGreen,
-    onPrimary = TennisColors.TextOnColor,
-    primaryContainer = Color(0xFFE8F4EA),         // Sehr helles Grün
-    onPrimaryContainer = Color(0xFF1B3A1F),
+    primary = TennisColors.ClayOrange,
+    onPrimary = TennisColors.CourtWhite,
+    primaryContainer = Color(0xFFFFF4E6),         // Sehr helles Orange
+    onPrimaryContainer = Color(0xFF3D1A00),
 
-    secondary = TennisColors.ClayOrange,
-    onSecondary = TennisColors.TextOnColor,
-    secondaryContainer = Color(0xFFFDF2E9),       // Sehr helles Orange
-    onSecondaryContainer = Color(0xFF7A2E0F),
+    secondary = TennisColors.TennisGreen,
+    onSecondary = TennisColors.CourtWhite,
+    secondaryContainer = Color(0xFFE8F5E8),       // Sehr helles Grün
+    onSecondaryContainer = Color(0xFF0D2818),
 
     tertiary = TennisColors.CourtBlue,
-    onTertiary = TennisColors.TextOnColor,
-    tertiaryContainer = Color(0xFFE8F4F8),        // Sehr helles Blau
-    onTertiaryContainer = Color(0xFF1A3A42),
+    onTertiary = TennisColors.CourtWhite,
+    tertiaryContainer = Color(0xFFE1F4FF),        // Sehr helles Blau
+    onTertiaryContainer = Color(0xFF001D35),
 
     background = TennisColors.BackgroundLight,
     onBackground = TennisColors.TextPrimary,
@@ -91,33 +92,33 @@ val LightColorScheme = lightColorScheme(
     surfaceVariant = TennisColors.SurfaceVariantLight,
     onSurfaceVariant = TennisColors.TextSecondary,
 
-    outline = TennisColors.SlateGray.copy(alpha = 0.6f),
-    outlineVariant = TennisColors.MistGray,
+    outline = TennisColors.WarmGray.copy(alpha = 0.6f),
+    outlineVariant = TennisColors.LightGray,
 
     error = TennisColors.Error,
-    onError = TennisColors.TextOnColor,
-    errorContainer = Color(0xFFFED7D7),
-    onErrorContainer = Color(0xFF742A2A),
+    onError = TennisColors.CourtWhite,
+    errorContainer = Color(0xFFFFEBEE),
+    onErrorContainer = Color(0xFF5F2120),
 
     scrim = Color.Black.copy(alpha = 0.32f)
 )
 
-// Dark Theme - Warme, natürliche Dunkelfarben
+// Dark Theme - Warme Clay-Dunkelfarben
 val DarkColorScheme = darkColorScheme(
-    primary = TennisColors.SoftMint,              // Sanftes Mint als Primär
+    primary = TennisColors.ClayOrangeLight,       // Helles Orange als Primär
     onPrimary = TennisColors.TextOnColorDark,
-    primaryContainer = Color(0xFF1B3A1F),         // Dunkles Grün
-    onPrimaryContainer = Color(0xFFB8E6B8),
+    primaryContainer = Color(0xFF3D1A00),         // Dunkles Orange
+    onPrimaryContainer = Color(0xFFFFF4E6),
 
-    secondary = TennisColors.ClayOrangeLight,     // Helles Orange
+    secondary = Color(0xFF32CD32),                // Helles Grün
     onSecondary = TennisColors.TextOnColorDark,
-    secondaryContainer = Color(0xFF7A2E0F),       // Dunkles Orange
-    onSecondaryContainer = Color(0xFFFDF2E9),
+    secondaryContainer = Color(0xFF0D2818),       // Dunkles Grün
+    onSecondaryContainer = Color(0xFFE8F5E8),
 
     tertiary = Color(0xFF87CEEB),                 // Helles Blau
     onTertiary = TennisColors.TextOnColorDark,
-    tertiaryContainer = Color(0xFF1A3A42),        // Dunkles Blau
-    onTertiaryContainer = Color(0xFFE8F4F8),
+    tertiaryContainer = Color(0xFF001D35),        // Dunkles Blau
+    onTertiaryContainer = Color(0xFFE1F4FF),
 
     background = TennisColors.BackgroundDark,
     onBackground = TennisColors.TextPrimaryDark,
@@ -127,48 +128,45 @@ val DarkColorScheme = darkColorScheme(
     surfaceVariant = TennisColors.SurfaceVariantDark,
     onSurfaceVariant = TennisColors.TextSecondaryDark,
 
-    outline = Color(0xFF8E8E93),
-    outlineVariant = Color(0xFF48484A),
+    outline = Color(0xFF8B8680),
+    outlineVariant = Color(0xFF4A4037),
 
     error = TennisColors.ErrorDark,
     onError = TennisColors.TextOnColorDark,
-    errorContainer = Color(0xFF742A2A),
-    onErrorContainer = Color(0xFFFED7D7),
+    errorContainer = Color(0xFF5F2120),
+    onErrorContainer = Color(0xFFFFEBEE),
 
     scrim = Color.Black.copy(alpha = 0.32f),
 
     // Erweiterte Dark Mode Colors
-    surfaceTint = TennisColors.SoftMint,
-    inverseSurface = Color(0xFFE5E5E7),
-    inverseOnSurface = Color(0xFF1C1C1E),
-    inversePrimary = TennisColors.ForestGreen,
+    surfaceTint = TennisColors.ClayOrangeLight,
+    inverseSurface = Color(0xFFE8DDD4),
+    inverseOnSurface = Color(0xFF1C1611),
+    inversePrimary = TennisColors.ClayOrange,
 
-    surfaceDim = Color(0xFF141518),
-    surfaceBright = Color(0xFF3A3A3C),
-    surfaceContainer = Color(0xFF1E1E20),
-    surfaceContainerHigh = Color(0xFF2C2C2E),
-    surfaceContainerHighest = Color(0xFF3A3A3C),
-    surfaceContainerLow = Color(0xFF1A1A1C),
-    surfaceContainerLowest = Color(0xFF0F0F10)
+    surfaceDim = Color(0xFF0C0A08),
+    surfaceBright = Color(0xFF3A322A),
+    surfaceContainer = Color(0xFF1F1C17),
+    surfaceContainerHigh = Color(0xFF2A251F),
+    surfaceContainerHighest = Color(0xFF342F28),
+    surfaceContainerLow = Color(0xFF171410),
+    surfaceContainerLowest = Color(0xFF12100C)
 )
 
-// Zusätzliche Utility Extensions
-val TennisColors.isLight: Boolean get() = true // Kann später dynamisch gemacht werden
-
-// Gradient Definitionen für besondere UI Elemente
+// Clay Court Gradienten
 object TennisGradients {
+    val ClayGradient = listOf(
+        TennisColors.ClayOrange,
+        TennisColors.ClayBrown
+    )
+
     val CourtGradient = listOf(
-        TennisColors.ForestGreen,
-        TennisColors.ForestGreenLight
+        TennisColors.TennisGreen,
+        TennisColors.CourtBlue
     )
 
     val SunsetGradient = listOf(
         TennisColors.ClayOrange,
         TennisColors.TennisYellow
-    )
-
-    val OceanGradient = listOf(
-        TennisColors.CourtBlue,
-        TennisColors.DeepTeal
     )
 }

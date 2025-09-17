@@ -44,7 +44,7 @@ fun ErrorContent(
             Text(
                 text = message,
                 style = MaterialTheme.typography.bodyMedium,
-                color = TennisColors.Error
+                color = MaterialTheme.colorScheme.error
             )
             Button(
                 onClick = onRetry,

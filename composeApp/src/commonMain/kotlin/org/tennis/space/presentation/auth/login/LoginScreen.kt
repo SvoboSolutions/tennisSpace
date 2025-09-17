@@ -4,13 +4,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
 import org.tennis.space.domain.repository.AuthRepository
 import org.tennis.space.domain.model.LoginRequest
 import org.tennis.space.domain.model.User
-import org.tennis.space.presentation.auth.components.*
+import org.tennis.space.presentation.theme.TennisDimensions
 
 @Composable
 fun LoginScreen(
@@ -21,55 +20,38 @@ fun LoginScreen(
     var uiState by remember { mutableStateOf(LoginUiState()) }
     val scope = rememberCoroutineScope()
 
-    TennisBackground {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            TennisAppHeader()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(TennisDimensions.SpaceMedium),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        LoginForm(
+            uiState = uiState,
+            onEmailChange = { uiState = uiState.copy(email = it) },
+            onPasswordChange = { uiState = uiState.copy(password = it) },
+            onLogin = {
+                scope.launch {
+                    uiState = uiState.copy(isLoading = true, errorMessage = null)
 
-            Spacer(modifier = Modifier.height(32.dp))
+                    authRepository.login(LoginRequest(uiState.email, uiState.password))
+                        .onSuccess { onLoginSuccess(it) }
+                        .onFailure { uiState = uiState.copy(errorMessage = it.message) }
 
-            LoginForm(
-                uiState = uiState,
-                onEmailChange = { uiState = uiState.copy(email = it) },
-                onPasswordChange = { uiState = uiState.copy(password = it) },
-                onPasswordVisibilityToggle = {
-                    uiState = uiState.copy(isPasswordVisible = !uiState.isPasswordVisible)
-                },
-                onLogin = {
-                    scope.launch {
-                        uiState = uiState.copy(isLoading = true, errorMessage = null)
-
-                        val result = authRepository.login(LoginRequest(uiState.email, uiState.password))
-
-                        result.onSuccess { user ->
-                            onLoginSuccess(user)
-                        }.onFailure { exception ->
-                            uiState = uiState.copy(
-                                errorMessage = exception.message ?: "Login fehlgeschlagen"
-                            )
-                        }
-
-                        uiState = uiState.copy(isLoading = false)
-                    }
-                },
-                onNavigateToRegister = onNavigateToRegister
-            )
-        }
+                    uiState = uiState.copy(isLoading = false)
+                }
+            },
+            onNavigateToRegister = onNavigateToRegister,
+        )
     }
 }
 
 data class LoginUiState(
     val email: String = "test@tennis.com",
     val password: String = "123456",
-    val isPasswordVisible: Boolean = false,
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 ) {
-    val isFormValid: Boolean
-        get() = email.isNotEmpty() && password.isNotEmpty()
+    val isFormValid: Boolean get() = email.isNotEmpty() && password.length >= 6
 }

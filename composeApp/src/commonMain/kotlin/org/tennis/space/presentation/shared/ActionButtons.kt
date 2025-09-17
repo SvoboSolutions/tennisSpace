@@ -45,8 +45,8 @@ private fun PrimaryActionButton(
             .fillMaxWidth()
             .height(TennisDimensions.InputFieldHeight),
         colors = ButtonDefaults.buttonColors(
-            containerColor = TennisColors.ForestGreen,
-            contentColor = TennisColors.TextOnColor
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
         ),
         shape = RoundedCornerShape(TennisDimensions.CardCornerRadius)
     ) {
@@ -57,7 +57,7 @@ private fun PrimaryActionButton(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = TennisColors.TextOnColor
+                tint = MaterialTheme.colorScheme.onPrimary
             )
             Text(
                 text = text,

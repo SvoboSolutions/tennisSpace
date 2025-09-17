@@ -20,69 +20,70 @@ fun TennisApp() {
     val authRepository: AuthRepository = koinInject()
     var user by remember { mutableStateOf<User?>(null) }
     var showRegister by remember { mutableStateOf(false) }
-    var showClubSearch by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         user = authRepository.getCurrentUser()
     }
 
-    TennisSpaceTheme{
+    TennisSpaceTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                when {
-                    user == null -> {
-                        AppHeader()
-                        Spacer(modifier = Modifier.height(32.dp))
-
-                        if (showRegister) {
-                            RegisterScreen(
-                                onRegisterSuccess = { registeredUser ->
-                                    user = registeredUser
-                                    showRegister = false
-
-                                },
-                                onBackToLogin = { showRegister = false }
-                            )
-                        } else {
-                            LoginScreen(
-                                onLoginSuccess = { loggedInUser ->
-                                    user = loggedInUser
-
-                                },
-                                onNavigateToRegister = { showRegister = true }
-                            )
+            when {
+                user == null -> {
+                    AuthFlow(
+                        showRegister = showRegister,
+                        onShowRegisterChange = { showRegister = it },
+                        onUserAuthenticated = { authenticatedUser ->
+                            user = authenticatedUser
                         }
-                    }
+                    )
+                }
 
-                    showClubSearch -> {
-                        ClubSearchScreen(
-                            onClubSelected = { clubId ->
-                                // Navigation zu Club Details später
-                                println("Selected club: $clubId")
-                            }
-                        )
-                    }
-
-                    else -> {
-
-                        MainScreen(
-                            user = user!!,
-                            onLogout = {
-                                user = null
-                                showClubSearch = false
-                            },
-                            onSearchClubs = { showClubSearch = true }
-                        )
-                    }
+                else -> {
+                    MainScreen(
+                        user = user!!,
+                        onLogout = {
+                            user = null
+                            showRegister = false
+                        }
+                    )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun AuthFlow(
+    showRegister: Boolean,
+    onShowRegisterChange: (Boolean) -> Unit,
+    onUserAuthenticated: (User) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        AppHeader()
+        Spacer(modifier = Modifier.height(32.dp))
+
+        if (showRegister) {
+            RegisterScreen(
+                onRegisterSuccess = { registeredUser ->
+                    onUserAuthenticated(registeredUser)
+                    onShowRegisterChange(false)
+                },
+                onBackToLogin = { onShowRegisterChange(false) }
+            )
+        } else {
+            LoginScreen(
+                onLoginSuccess = { loggedInUser ->
+                    onUserAuthenticated(loggedInUser)
+                },
+                onNavigateToRegister = { onShowRegisterChange(true) }
+            )
         }
     }
 }
