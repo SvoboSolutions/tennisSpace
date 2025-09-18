@@ -9,5 +9,7 @@ interface AuthRepository {
     suspend fun register(request: RegisterRequest): Result<User>
     suspend fun getCurrentUser(): User?
     suspend fun logout()
+    suspend fun joinClub(userId: String, clubId: String): Result<User>
+    suspend fun updateUser(user: User): Result<User>
     fun isLoggedIn(): Boolean
 }

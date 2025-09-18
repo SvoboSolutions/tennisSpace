@@ -59,6 +59,9 @@ fun TennisApp() {
                         onLogout = {
                             user = null
                             showRegister = false
+                        },
+                        onUserUpdated = { updatedUser ->
+                            user = updatedUser
                         }
                     )
                 }

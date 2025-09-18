@@ -16,7 +16,10 @@ val appModule = module {
     single { Firebase.firestore }
 
     // Repositories
-    single<AuthRepository> { FirebaseAuthRepository(get()) }
+    single<AuthRepository> { FirebaseAuthRepository(
+        get(),
+        firestore = get()
+    ) }
     single<ClubRepository> { FirebaseClubRepository(get()) }
     single { SeedDataUseCase(get()) }
 }

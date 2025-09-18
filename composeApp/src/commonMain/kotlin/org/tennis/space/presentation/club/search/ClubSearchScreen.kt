@@ -11,13 +11,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,7 +28,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
@@ -35,14 +35,17 @@ import org.tennis.space.domain.model.TennisClub
 import org.tennis.space.domain.repository.ClubRepository
 import org.tennis.space.presentation.theme.TennisDimensions
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 @Composable
 fun ClubSearchScreen(
     onClubSelected: (String) -> Unit = {},
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val clubRepository: ClubRepository = koinInject()
     var uiState by remember { mutableStateOf(ClubSearchUiState()) }
+    var selectedClub by remember { mutableStateOf<TennisClub?>(null) }
     val scope = rememberCoroutineScope()
+    val sheetState = rememberModalBottomSheetState()
 
     LaunchedEffect(Unit) {
         uiState = uiState.copy(isLoading = true)
@@ -90,56 +93,6 @@ fun ClubSearchScreen(
                 }
             }
 
-            uiState.errorMessage != null -> {
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.errorContainer
-                    ),
-                    shape = RoundedCornerShape(TennisDimensions.CardCornerRadius)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(TennisDimensions.SpaceMedium),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(TennisDimensions.SpaceSmall)
-                    ) {
-                        Text(
-                            text = "Fehler",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onErrorContainer
-                        )
-                        uiState.errorMessage?.let {
-                            Text(
-                                text = it,
-                                color = MaterialTheme.colorScheme.onErrorContainer
-                            )
-                        }
-                        Button(
-                            onClick = {
-                                scope.launch {
-                                    uiState = uiState.copy(isLoading = true, errorMessage = null)
-                                    clubRepository.getAllClubs()
-                                        .onSuccess { clubs ->
-                                            uiState = uiState.copy(
-                                                allClubs = clubs,
-                                                filteredClubs = clubs,
-                                                isLoading = false
-                                            )
-                                        }
-                                        .onFailure { error ->
-                                            uiState = uiState.copy(
-                                                errorMessage = error.message,
-                                                isLoading = false
-                                            )
-                                        }
-                                }
-                            }
-                        ) {
-                            Text("Erneut versuchen")
-                        }
-                    }
-                }
-            }
-
             uiState.filteredClubs.isEmpty() -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -147,7 +100,7 @@ fun ClubSearchScreen(
                 ) {
                     Text(
                         text = if (uiState.searchQuery.isEmpty()) "Keine Clubs verfügbar"
-                        else "Keine Clubs gefunden für \"${uiState.searchQuery}\"",
+                        else "Keine Clubs gefunden",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -162,52 +115,32 @@ fun ClubSearchScreen(
                     items(uiState.filteredClubs, key = { it.id }) { club ->
                         ClubCard(
                             club = club,
-                            onClick = { onClubSelected(club.id) }
+                            onClick = {
+                                selectedClub = club
+                            }
                         )
                     }
                 }
             }
         }
     }
-}
 
-@Composable
-private fun ClubCard(
-    club: TennisClub,
-    onClick: () -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = onClick,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = TennisDimensions.CardElevation),
-        shape = RoundedCornerShape(TennisDimensions.CardCornerRadius)
-    ) {
-        Column(
-            modifier = Modifier.padding(TennisDimensions.SpaceMedium),
-            verticalArrangement = Arrangement.spacedBy(TennisDimensions.SpaceSmall)
+    // Bottom Sheet
+    selectedClub?.let { club ->
+        ModalBottomSheet(
+            onDismissRequest = { selectedClub = null },
+            sheetState = sheetState,
+            dragHandle = { BottomSheetDefaults.DragHandle() }
         ) {
-            Text(
-                text = club.name,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.SemiBold
-                ),
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
-            Text(
-                text = club.address,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-
-            Text(
-                text = club.description,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2
+            ClubDetailSheet(
+                club = club,
+                onJoinClub = {
+                    scope.launch {
+                        selectedClub = null
+                        onClubSelected(club.id)
+                    }
+                },
+                onDismiss = { selectedClub = null }
             )
         }
     }
